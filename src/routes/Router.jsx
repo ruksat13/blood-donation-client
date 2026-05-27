@@ -1,3 +1,4 @@
+import EditDonationRequest from "../pages/Dashboard/Donor/EditDonationRequest";
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
@@ -61,6 +62,7 @@ const Router = createBrowserRouter([
             { path: "", element: <DonorHome /> },
             { path: "my-donation-requests", element: <MyDonationRequests /> },
             { path: "create-donation-request", element: <CreateDonationRequest /> },
+            { path: "edit-donation-request/:id", element: <EditDonationRequest /> },
 
             // Admin
             { path: "admin-home", element: <AdminHome /> },
