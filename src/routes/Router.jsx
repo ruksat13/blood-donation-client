@@ -1,3 +1,4 @@
+import Funding from "../pages/Funding/Funding";
 import EditDonationRequest from "../pages/Dashboard/Donor/EditDonationRequest";
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
@@ -45,6 +46,14 @@ const Router = createBrowserRouter([
                 ),
             },
             { path: "/search", element: <Search /> },
+            {
+                path: "/funding",
+                element: (
+                    <PrivateRoute>
+                        <Funding />
+                    </PrivateRoute>
+                ),
+            },
         ],
     },
     {
