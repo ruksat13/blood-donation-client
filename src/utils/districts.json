@@ -1,0 +1,214 @@
+[
+    {
+        "name": "Dhaka",
+        "upazilas": [
+            "Dhanmondi",
+            "Gulshan",
+            "Mirpur",
+            "Mohammadpur",
+            "Tejgaon",
+            "Uttara",
+            "Demra",
+            "Khilgaon",
+            "Lalbagh",
+            "Motijheel"
+        ]
+    },
+    {
+        "name": "Chittagong",
+        "upazilas": [
+            "Agrabad",
+            "Bayazid",
+            "Chandgaon",
+            "Double Mooring",
+            "Halishahar",
+            "Kotwali",
+            "Pahartali",
+            "Panchlaish",
+            "Patenga",
+            "Bakalia"
+        ]
+    },
+    {
+        "name": "Rajshahi",
+        "upazilas": [
+            "Boalia",
+            "Motihar",
+            "Rajpara",
+            "Shah Makhdum",
+            "Paba",
+            "Godagari",
+            "Tanore",
+            "Bagmara",
+            "Charghat",
+            "Durgapur"
+        ]
+    },
+    {
+        "name": "Khulna",
+        "upazilas": [
+            "Khalishpur",
+            "Khan Jahan Ali",
+            "Kotwali",
+            "Sonadanga",
+            "Daulatpur",
+            "Batiaghata",
+            "Dacope",
+            "Dumuria",
+            "Haringhata",
+            "Koyra"
+        ]
+    },
+    {
+        "name": "Sylhet",
+        "upazilas": [
+            "Balaganj",
+            "Beanibazar",
+            "Bishwanath",
+            "Companiganj",
+            "Fenchuganj",
+            "Golapganj",
+            "Gowainghat",
+            "Jaintiapur",
+            "Kanaighat",
+            "Kotwali"
+        ]
+    },
+    {
+        "name": "Barisal",
+        "upazilas": [
+            "Agailjhara",
+            "Babuganj",
+            "Bakerganj",
+            "Banaripara",
+            "Gaurnadi",
+            "Hizla",
+            "Kotwali",
+            "Mehendiganj",
+            "Muladi",
+            "Wazirpur"
+        ]
+    },
+    {
+        "name": "Rangpur",
+        "upazilas": [
+            "Badarganj",
+            "Gangachara",
+            "Kaunia",
+            "Mithapukur",
+            "Pirgachha",
+            "Pirganj",
+            "Rangpur Sadar",
+            "Taraganj"
+        ]
+    },
+    {
+        "name": "Mymensingh",
+        "upazilas": [
+            "Bhaluka",
+            "Dhobaura",
+            "Fulbaria",
+            "Gaffargaon",
+            "Gauripur",
+            "Haluaghat",
+            "Ishwarganj",
+            "Mymensingh Sadar",
+            "Nandail",
+            "Phulpur"
+        ]
+    },
+    {
+        "name": "Comilla",
+        "upazilas": [
+            "Barura",
+            "Brahmanpara",
+            "Burichang",
+            "Chandina",
+            "Chauddagram",
+            "Daudkandi",
+            "Debidwar",
+            "Homna",
+            "Kotwali",
+            "Laksam"
+        ]
+    },
+    {
+        "name": "Narayanganj",
+        "upazilas": [
+            "Araihazar",
+            "Bandar",
+            "Naryanganj Sadar",
+            "Rupganj",
+            "Sonargaon"
+        ]
+    },
+    {
+        "name": "Gazipur",
+        "upazilas": [
+            "Gazipur Sadar",
+            "Kaliakair",
+            "Kaliganj",
+            "Kapasia",
+            "Sreepur"
+        ]
+    },
+    {
+        "name": "Tangail",
+        "upazilas": [
+            "Basail",
+            "Bhuapur",
+            "Delduar",
+            "Dhanbari",
+            "Ghatail",
+            "Gopalpur",
+            "Kalihati",
+            "Madhupur",
+            "Mirzapur",
+            "Nagarpur"
+        ]
+    },
+    {
+        "name": "Jessore",
+        "upazilas": [
+            "Abhaynagar",
+            "Avoynagar",
+            "Bagherpara",
+            "Chaugachha",
+            "Jhikargachha",
+            "Keshabpur",
+            "Jessore Sadar",
+            "Manirampur",
+            "Sharsha"
+        ]
+    },
+    {
+        "name": "Bogra",
+        "upazilas": [
+            "Adamdighi",
+            "Bogra Sadar",
+            "Dhunat",
+            "Dhupchanchia",
+            "Gabtali",
+            "Kahaloo",
+            "Nandigram",
+            "Sariakandi",
+            "Shajahanpur",
+            "Sherpur"
+        ]
+    },
+    {
+        "name": "Dinajpur",
+        "upazilas": [
+            "Birampur",
+            "Birganj",
+            "Biral",
+            "Bochaganj",
+            "Chirirbandar",
+            "Dinajpur Sadar",
+            "Fulbari",
+            "Ghoraghat",
+            "Hakimpur",
+            "Kaharole"
+        ]
+    }
+]
