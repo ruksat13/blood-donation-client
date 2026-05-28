@@ -42,7 +42,7 @@ const Navbar = () => {
                     ) : (
                         <div className="relative">
                             <img
-                                src={user.photoURL || "https://i.ibb.co/placeholder.png"}
+                                src={user.photoURL || "https://i.ibb.co/0jq8H5B/avatar.png"}
                                 alt="avatar"
                                 className="w-10 h-10 rounded-full cursor-pointer border-2 border-white object-cover"
                                 onClick={() => setDropdownOpen(!dropdownOpen)}
