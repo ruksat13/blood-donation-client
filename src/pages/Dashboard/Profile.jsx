@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
@@ -11,6 +12,17 @@ const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(false);
     const [upazilas, setUpazilas] = useState([]);
+
+    const [dbUser, setDbUser] = useState(null);
+
+    useEffect(() => {
+        if (user?.email) {
+            axios
+                .get(`${import.meta.env.VITE_API_URL}/users/role/${user.email}`)
+                .then((res) => setDbUser(res.data))
+                .catch(() => { });
+        }
+    }, [user]);
 
     const handleDistrictChange = (e) => {
         const districtName = e.target.value;
