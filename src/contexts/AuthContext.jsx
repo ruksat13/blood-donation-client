@@ -41,8 +41,17 @@ const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
+            if (currentUser) {
+                // Get JWT token
+                const res = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+                    email: currentUser.email,
+                });
+                localStorage.setItem("token", res.data.token);
+            } else {
+                localStorage.removeItem("token");
+            }
             setLoading(false);
         });
         return () => unsubscribe();

@@ -1,0 +1,15 @@
+import axiosSecure from "../../../utils/axiosSecure";
+
+const axiosSecure = axiosSecure.create({
+  baseURL: import.meta.env.VITE_API_URL,
+});
+
+axiosSecure.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export default axiosSecure;

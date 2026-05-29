@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosSecure from "../../../utils/axiosSecure";
 import toast from "react-hot-toast";
 import districtData from "../../../utils/districts.json";
 
@@ -47,7 +47,7 @@ const EditDonationRequest = () => {
 
     try {
       setLoading(true);
-      await axios.patch(`${import.meta.env.VITE_API_URL}/donation-requests/${id}`, updated);
+      await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/donation-requests/${id}`, updated);
       toast.success("Donation request updated successfully!");
       navigate("/dashboard/my-donation-requests");
     } catch {

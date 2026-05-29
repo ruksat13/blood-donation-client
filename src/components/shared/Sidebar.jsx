@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosSecure from "../../../utils/axiosSecure";
 
 const Sidebar = () => {
     const { user, logout } = useAuth();

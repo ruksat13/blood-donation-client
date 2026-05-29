@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
-import axios from "axios";
+import axiosSecure from "../../../utils/axiosSecure";
 import { FaTint, FaDollarSign, FaUsers } from "react-icons/fa";
 
 const VolunteerHome = () => {

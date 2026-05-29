@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import axios from "axios";
+import axiosSecure from "../../../utils/axiosSecure";
 import toast from "react-hot-toast";
 import districtData from "../../utils/districts.json";
 
@@ -41,7 +41,7 @@ const Profile = () => {
         try {
             setLoading(true);
             await updateUserProfile(name, user.photoURL);
-            await axios.patch(`${import.meta.env.VITE_API_URL}/users/${user.email}`, {
+            await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/users/${user.email}`, {
                 name,
                 bloodGroup,
                 district,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
-import axios from "axios";
+import axiosSecure from "../../../utils/axiosSecure";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -35,14 +35,14 @@ const MyDonationRequests = () => {
     });
 
     if (result.isConfirmed) {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/donation-requests/${id}`);
+      await axiosSecure.delete(`${import.meta.env.VITE_API_URL}/donation-requests/${id}`);
       setRequests(requests.filter((r) => r._id !== id));
       Swal.fire("Deleted!", "Your request has been deleted.", "success");
     }
   };
 
   const handleStatusChange = async (id, status) => {
-    await axios.patch(`${import.meta.env.VITE_API_URL}/donation-requests/${id}`, { status });
+    await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/donation-requests/${id}`, { status });
     setRequests(requests.map((r) => (r._id === id ? { ...r, status } : r)));
   };
 
