@@ -20,7 +20,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (user?.email) {
-            axiosSecure
+            axios
                 .get(`/users/${user.email}`)
                 .then((res) => {
                     const data = res.data;
