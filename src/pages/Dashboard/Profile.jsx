@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import axiosSecure from "../../utils/axiosSecure";
+import axios from "axios";
 import toast from "react-hot-toast";
 import districtData from "../../utils/districts.json";
 
