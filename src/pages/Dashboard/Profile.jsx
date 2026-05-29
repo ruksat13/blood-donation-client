@@ -80,7 +80,7 @@ const Profile = () => {
                 />
             </div>
 
-            <form onSubmit={handleSave} className="space-y-4">
+            <form key={dbUser?._id} onSubmit={handleSave} className="space-y-4">
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                     <input
