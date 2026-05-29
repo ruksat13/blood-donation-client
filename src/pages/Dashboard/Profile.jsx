@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import axiosSecure from "../../../utils/axiosSecure";
+import axiosSecure from "../../utils/axiosSecure";
 import toast from "react-hot-toast";
 import districtData from "../../utils/districts.json";
 
@@ -11,22 +10,24 @@ const Profile = () => {
     const { user, updateUserProfile } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [upazilas, setUpazilas] = useState([]);
-
     const [dbUser, setDbUser] = useState(null);
+    const [upazilas, setUpazilas] = useState([]);
 
     useEffect(() => {
         if (user?.email) {
-            axios
-                .get(`${import.meta.env.VITE_API_URL}/users/role/${user.email}`)
-                .then((res) => setDbUser(res.data))
+            axiosSecure
+                .get(`/users/${user.email}`)
+                .then((res) => {
+                    setDbUser(res.data);
+                    const found = districtData.find((d) => d.name === res.data?.district);
+                    setUpazilas(found ? found.upazilas : []);
+                })
                 .catch(() => { });
         }
     }, [user]);
 
     const handleDistrictChange = (e) => {
-        const districtName = e.target.value;
-        const found = districtData.find((d) => d.name === districtName);
+        const found = districtData.find((d) => d.name === e.target.value);
         setUpazilas(found ? found.upazilas : []);
     };
 
@@ -41,15 +42,16 @@ const Profile = () => {
         try {
             setLoading(true);
             await updateUserProfile(name, user.photoURL);
-            await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/users/${user.email}`, {
+            await axiosSecure.patch(`/users/${user.email}`, {
                 name,
                 bloodGroup,
                 district,
                 upazila,
             });
+            setDbUser({ ...dbUser, name, bloodGroup, district, upazila });
             toast.success("Profile updated successfully!");
             setIsEditing(false);
-        } catch (error) {
+        } catch {
             toast.error("Failed to update profile!");
         } finally {
             setLoading(false);
@@ -70,10 +72,9 @@ const Profile = () => {
                 )}
             </div>
 
-            {/* Avatar */}
             <div className="flex justify-center mb-6">
                 <img
-                    src={user?.photoURL || "https://i.ibb.co/placeholder.png"}
+                    src={user?.photoURL || "https://i.ibb.co/0jq8H5B/avatar.png"}
                     alt="avatar"
                     className="w-24 h-24 rounded-full object-cover border-4 border-red-400"
                 />
@@ -85,7 +86,7 @@ const Profile = () => {
                     <input
                         type="text"
                         name="name"
-                        defaultValue={user?.displayName}
+                        defaultValue={dbUser?.name || user?.displayName}
                         disabled={!isEditing}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-400 disabled:bg-gray-100"
                     />
@@ -106,6 +107,7 @@ const Profile = () => {
                     <select
                         name="bloodGroup"
                         disabled={!isEditing}
+                        defaultValue={dbUser?.bloodGroup}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-400 disabled:bg-gray-100"
                     >
                         {bloodGroups.map((bg) => (
@@ -119,6 +121,7 @@ const Profile = () => {
                     <select
                         name="district"
                         disabled={!isEditing}
+                        defaultValue={dbUser?.district}
                         onChange={handleDistrictChange}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-400 disabled:bg-gray-100"
                     >
@@ -134,6 +137,7 @@ const Profile = () => {
                     <select
                         name="upazila"
                         disabled={!isEditing}
+                        defaultValue={dbUser?.upazila}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-400 disabled:bg-gray-100"
                     >
                         <option value="">Select upazila</option>
