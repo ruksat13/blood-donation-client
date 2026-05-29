@@ -1,3 +1,4 @@
+import DashboardHome from "../pages/Dashboard/DashboardHome";
 import Funding from "../pages/Funding/Funding";
 import EditDonationRequest from "../pages/Dashboard/Donor/EditDonationRequest";
 import { createBrowserRouter } from "react-router-dom";
@@ -68,7 +69,8 @@ const Router = createBrowserRouter([
             { path: "profile", element: <Profile /> },
 
             // Donor
-            { path: "", element: <DonorHome /> },
+            // Dashboard Home (role based)
+            { path: "", element: <DashboardHome /> },
             { path: "my-donation-requests", element: <MyDonationRequests /> },
             { path: "create-donation-request", element: <CreateDonationRequest /> },
             { path: "edit-donation-request/:id", element: <EditDonationRequest /> },
