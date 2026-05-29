@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axiosSecure from "../../../utils/axiosSecure";
+import axios from "axios";
 import Swal from "sweetalert2";
 
 const AllUsers = () => {
@@ -14,12 +14,12 @@ const AllUsers = () => {
     }, [filter]);
 
     const handleBlock = async (email) => {
-        await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/users/status/${email}`, { status: "blocked" });
+        await axios.patch(`${import.meta.env.VITE_API_URL}/users/status/${email}`, { status: "blocked" });
         setUsers(users.map((u) => (u.email === email ? { ...u, status: "blocked" } : u)));
     };
 
     const handleUnblock = async (email) => {
-        await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/users/status/${email}`, { status: "active" });
+        await axios.patch(`${import.meta.env.VITE_API_URL}/users/status/${email}`, { status: "active" });
         setUsers(users.map((u) => (u.email === email ? { ...u, status: "active" } : u)));
     };
 
@@ -32,7 +32,7 @@ const AllUsers = () => {
             confirmButtonText: "Yes!",
         });
         if (result.isConfirmed) {
-            await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/users/role/${email}`, { role: "volunteer" });
+            await axios.patch(`${import.meta.env.VITE_API_URL}/users/role/${email}`, { role: "volunteer" });
             setUsers(users.map((u) => (u.email === email ? { ...u, role: "volunteer" } : u)));
             Swal.fire("Done!", "User is now a volunteer.", "success");
         }
@@ -47,7 +47,7 @@ const AllUsers = () => {
             confirmButtonText: "Yes!",
         });
         if (result.isConfirmed) {
-            await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/users/role/${email}`, { role: "admin" });
+            await axios.patch(`${import.meta.env.VITE_API_URL}/users/role/${email}`, { role: "admin" });
             setUsers(users.map((u) => (u.email === email ? { ...u, role: "admin" } : u)));
             Swal.fire("Done!", "User is now an admin.", "success");
         }

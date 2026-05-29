@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axiosSecure from "../../../utils/axiosSecure";
+import axios from "axios";
 
 const VolunteerAllRequests = () => {
     const [requests, setRequests] = useState([]);
@@ -18,7 +18,7 @@ const VolunteerAllRequests = () => {
     }, [filter, currentPage]);
 
     const handleStatusChange = async (id, status) => {
-        await axiosSecure.patch(`${import.meta.env.VITE_API_URL}/donation-requests/${id}`, { status });
+        await axios.patch(`${import.meta.env.VITE_API_URL}/donation-requests/${id}`, { status });
         setRequests(requests.map((r) => (r._id === id ? { ...r, status } : r)));
     };
 

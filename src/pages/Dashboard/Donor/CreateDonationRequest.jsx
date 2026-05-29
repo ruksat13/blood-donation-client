@@ -1,5 +1,5 @@
 import { useAuth } from "../../../contexts/AuthContext";
-import axiosSecure from "../../../utils/axiosSecure";
+import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import districtData from "../../../utils/districts.json";
@@ -39,7 +39,7 @@ const CreateDonationRequest = () => {
 
         try {
             setLoading(true);
-            await axiosSecure.post(`${import.meta.env.VITE_API_URL}/donation-requests`, donationRequest);
+            await axios.post(`${import.meta.env.VITE_API_URL}/donation-requests`, donationRequest);
             toast.success("Donation request created successfully!");
             navigate("/dashboard/my-donation-requests");
         } catch (error) {

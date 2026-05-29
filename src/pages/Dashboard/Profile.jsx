@@ -49,7 +49,7 @@ const Profile = () => {
         try {
             setLoading(true);
             await updateUserProfile(formData.name, user.photoURL);
-            await axiosSecure.patch(`/users/${user.email}`, formData);
+            await axios.patch(`/users/${user.email}`, formData);
             toast.success("Profile updated successfully!");
             setIsEditing(false);
         } catch {
