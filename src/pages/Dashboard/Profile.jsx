@@ -10,16 +10,27 @@ const Profile = () => {
     const { user, updateUserProfile } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [dbUser, setDbUser] = useState(null);
     const [upazilas, setUpazilas] = useState([]);
+    const [formData, setFormData] = useState({
+        name: "",
+        bloodGroup: "",
+        district: "",
+        upazila: "",
+    });
 
     useEffect(() => {
         if (user?.email) {
             axiosSecure
                 .get(`/users/${user.email}`)
                 .then((res) => {
-                    setDbUser(res.data);
-                    const found = districtData.find((d) => d.name === res.data?.district);
+                    const data = res.data;
+                    setFormData({
+                        name: data?.name || user?.displayName || "",
+                        bloodGroup: data?.bloodGroup || "",
+                        district: data?.district || "",
+                        upazila: data?.upazila || "",
+                    });
+                    const found = districtData.find((d) => d.name === data?.district);
                     setUpazilas(found ? found.upazilas : []);
                 })
                 .catch(() => { });
@@ -27,28 +38,18 @@ const Profile = () => {
     }, [user]);
 
     const handleDistrictChange = (e) => {
-        const found = districtData.find((d) => d.name === e.target.value);
+        const district = e.target.value;
+        setFormData({ ...formData, district, upazila: "" });
+        const found = districtData.find((d) => d.name === district);
         setUpazilas(found ? found.upazilas : []);
     };
 
     const handleSave = async (e) => {
         e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const bloodGroup = form.bloodGroup.value;
-        const district = form.district.value;
-        const upazila = form.upazila.value;
-
         try {
             setLoading(true);
-            await updateUserProfile(name, user.photoURL);
-            await axiosSecure.patch(`/users/${user.email}`, {
-                name,
-                bloodGroup,
-                district,
-                upazila,
-            });
-            setDbUser({ ...dbUser, name, bloodGroup, district, upazila });
+            await updateUserProfile(formData.name, user.photoURL);
+            await axiosSecure.patch(`/users/${user.email}`, formData);
             toast.success("Profile updated successfully!");
             setIsEditing(false);
         } catch {
@@ -80,13 +81,13 @@ const Profile = () => {
                 />
             </div>
 
-            <form key={dbUser?._id} onSubmit={handleSave} className="space-y-4">
+            <form onSubmit={handleSave} className="space-y-4">
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                     <input
                         type="text"
-                        name="name"
-                        defaultValue={dbUser?.name || user?.displayName}
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         disabled={!isEditing}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-400 disabled:bg-gray-100"
                     />
@@ -96,7 +97,7 @@ const Profile = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                     <input
                         type="email"
-                        value={user?.email}
+                        value={user?.email || ""}
                         disabled
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 bg-gray-100 cursor-not-allowed"
                     />
@@ -105,11 +106,12 @@ const Profile = () => {
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Blood Group</label>
                     <select
-                        name="bloodGroup"
+                        value={formData.bloodGroup}
+                        onChange={(e) => setFormData({ ...formData, bloodGroup: e.target.value })}
                         disabled={!isEditing}
-                        defaultValue={dbUser?.bloodGroup}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-400 disabled:bg-gray-100"
                     >
+                        <option value="">Select blood group</option>
                         {bloodGroups.map((bg) => (
                             <option key={bg} value={bg}>{bg}</option>
                         ))}
@@ -119,10 +121,9 @@ const Profile = () => {
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">District</label>
                     <select
-                        name="district"
-                        disabled={!isEditing}
-                        defaultValue={dbUser?.district}
+                        value={formData.district}
                         onChange={handleDistrictChange}
+                        disabled={!isEditing}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-400 disabled:bg-gray-100"
                     >
                         <option value="">Select district</option>
@@ -135,9 +136,9 @@ const Profile = () => {
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Upazila</label>
                     <select
-                        name="upazila"
+                        value={formData.upazila}
+                        onChange={(e) => setFormData({ ...formData, upazila: e.target.value })}
                         disabled={!isEditing}
-                        defaultValue={dbUser?.upazila}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-400 disabled:bg-gray-100"
                     >
                         <option value="">Select upazila</option>
