@@ -51,6 +51,7 @@ const Sidebar = () => {
     const volunteerLinks = (
         <>
             <NavLink to="/dashboard" end className={linkClass}>🏠 Dashboard</NavLink>
+            <NavLink to="/dashboard/create-donation-request" className={linkClass}>🆕 Create Request</NavLink>
             <NavLink to="/dashboard/volunteer-all-requests" className={linkClass}>🩸 All Donation Requests</NavLink>
             <NavLink to="/dashboard/profile" className={linkClass}>👤 Profile</NavLink>
         </>
