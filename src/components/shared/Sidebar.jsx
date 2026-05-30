@@ -45,14 +45,12 @@ const Sidebar = () => {
             <NavLink to="/dashboard/all-users" className={linkClass}>👥 All Users</NavLink>
             <NavLink to="/dashboard/all-blood-donation-request" className={linkClass}>🩸 All Donation Requests</NavLink>
             <NavLink to="/dashboard/profile" className={linkClass}>👤 Profile</NavLink>
-            <NavLink to="/dashboard/profile" className={linkClass}>👤 Profile</NavLink>
         </>
     );
-
     const volunteerLinks = (
         <>
             <NavLink to="/dashboard" end className={linkClass}>🏠 Dashboard</NavLink>
-            <NavLink to="/dashboard/all-blood-donation-request" className={linkClass}>🩸 All Donation Requests</NavLink>
+            <NavLink to="/dashboard/volunteer-all-requests" className={linkClass}>🩸 All Donation Requests</NavLink>
             <NavLink to="/dashboard/profile" className={linkClass}>👤 Profile</NavLink>
         </>
     );
