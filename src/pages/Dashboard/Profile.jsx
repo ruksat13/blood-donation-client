@@ -21,7 +21,7 @@ const Profile = () => {
     useEffect(() => {
         if (user?.email) {
             axios
-                .get(`/users/${user.email}`)
+                .get(`${import.meta.env.VITE_API_URL}/users/${user.email}`)
                 .then((res) => {
                     const data = res.data;
                     setFormData({
@@ -49,7 +49,7 @@ const Profile = () => {
         try {
             setLoading(true);
             await updateUserProfile(formData.name, user.photoURL);
-            await axios.patch(`/users/${user.email}`, formData);
+            await axios.patch(`${import.meta.env.VITE_API_URL}/users/${user.email}`, formData);
             toast.success("Profile updated successfully!");
             setIsEditing(false);
         } catch {
