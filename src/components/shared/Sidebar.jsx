@@ -44,6 +44,7 @@ const Sidebar = () => {
             <NavLink to="/dashboard" end className={linkClass}>🏠 Dashboard</NavLink>
             <NavLink to="/dashboard/all-users" className={linkClass}>👥 All Users</NavLink>
             <NavLink to="/dashboard/all-blood-donation-request" className={linkClass}>🩸 All Donation Requests</NavLink>
+            <NavLink to="/dashboard/create-donation-request" className={linkClass}>🆕 Create Request</NavLink>
             <NavLink to="/dashboard/profile" className={linkClass}>👤 Profile</NavLink>
         </>
     );
