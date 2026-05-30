@@ -1,4 +1,5 @@
 
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState, useEffect } from "react";
@@ -73,10 +74,10 @@ const Sidebar = () => {
                     }`}
             >
                 {/* Logo */}
-                <div className="bg-red-700 text-white p-4 flex items-center gap-2">
+                <Link to="/" className="bg-red-700 text-white p-4 flex items-center gap-2 hover:bg-red-800 transition">
                     <span className="text-2xl">🩸</span>
                     <span className="text-lg font-bold">BloodBridge</span>
-                </div>
+                </Link>
 
                 {/* User Info */}
                 <div className="p-4 border-b flex items-center gap-3">
